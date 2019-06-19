@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="refresh" content="5">
+      <title> Respiration Data - Home </title>
+      <link rel="stylesheet" href="{{url_for('static',filename='style.css') }}"/>
+   </head>
+   <body>
+   <br>
+   <br>
+   <br>
+   <div style="text-align:center">  
+
+      <h1> Respiration Monitoring System </h1>
+                <span style = "font-size: large;">
+                <br>
+                <br>
+     <span style = "font-weight: bold; font-size: large; color: #3c1278;">Real-time data</span>
+      <table border = 1 >
+            <thead>
+              <tr>
+                 <td>Name</td>
+                 <td>DateTime</td>
+                 <td>Rpm</td>
+                 <td>Distance (m) </td>
+                 <td>Movement (mm) </td>
+                 <td>Signal Quailty</td>
+              </tr>
+            </thead>
+       
+      {% for row in rows %}
+           <tbody>
+              <tr>
+                 <td>{{row['name']}}</td>
+                 <td>{{row['date_time']}}</td>
+                 <td> {{ row['rpm']}}</td>
+                 <td> {{row['distance']}}</td>
+                 <td> {{ row['movement']}}</td>
+                 <td> {{row['s_quality']}}</td>		
+              </tr>
+           </tbody>
+           <script language="javascript">
+             if({{row['rpm']}}>39)
+             alert("RPM Warning - Send Notify")
+             if({{row['rpm']}}<5)
+             alert("RPM Warning - Send Notify")
+            </script>
+       {% endfor %}
+      </table>
+
+
+
+
+                <br>
+                <br><a href = "http://localhost:5000/lists">Show Table</a>
+                <br>
+                <br><a href = "https://www.xethru.com/respiration-sensor-x2m200.html">Sensor Information</a>
+                <br>
+                <br><a href = "http://localhost:5000/about"> About </a>
+                <br>  </br></span>
+           <br>
+           <br>
+           <footer>
+      <small>&copy; 2018-2019, Ewha University</small>
+     </footer>
+    </div>
+   </body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+   <head>
+    <meta charset = "utf-8" />
+    <title> Respiration Data </title>
+    <link rel="stylesheet" 
+           href="{{ url_for('static', filename='style.css') }}" />
+    <div style = "text-align:center">
+   <a href = "/">Go back to home page</a>
+    
+  <form action="/lists" method=post>
+  <dl>
+     <dt> Insert Date : YYYYMMDD</dt>
+     <dd>
+     <input type="text" name=select />
+     </dd>
+   </dl>
+   <p>
+      <input type=submit value=SEND>
+   </p>
+   </form>
+  </head>
+  
+  
+   <body>
+       <br> <a href="http://localhost:5000/graph"> Show Graph</a> <br>
+        <br>
+        <table border = 1 >
+         <thead>
+           <tr>
+              <td>Name</td>
+              <td>DateTime</td>
+              <td>Rpm</td>
+              <td>Distance (m) </td>
+              <td>Movement (mm) </td>
+              <td>Signal Quailty</td>
+            </tr>
+         </thead>
+         
+         {% for row in rows %}
+           <tbody>
+              <tr>
+                 <td>{{row['name']}}</td>
+                 <td>{{row['date_time']}}</td>
+                 <td> {{ row['rpm']}}</td>
+                 <td> {{row['distance']}}</td>
+                 <td> {{ row['movement']}}</td>
+                 <td> {{row['s_quality']}}</td>		
+              </tr>
+           </tbody>
+       {% endfor %}
+      </table>
+   </body>
+</html>
